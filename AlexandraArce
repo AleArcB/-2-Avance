@@ -1,0 +1,78 @@
+#Avance No.2 -Alexandra Arce Blanco
+precio_C15 = 1457
+precio_C30 = 2800
+#1. Incluir.
+def incluir(cartones_15, cartones_30):
+    try:
+        cartones_15_vendidos = int(input("Coloque la cantidad de cartones de 15 unidades vendidos:"))
+        cartones_30_vendidos = int(input("Coloque la cantidad de cartones de 30 unidades vendidos:"))
+        #TOTAL
+        cartones_15 += cartones_15_vendidos
+        cartones_30 += cartones_30_vendidos
+        print(f"Se registran {cartones_15_vendidos} cartones de 15 huevos y {cartones_30_vendidos} cartones de 30 huevos.")
+        return cartones_15, cartones_30
+    except ValueError:
+        print("ingrese un número válido.")
+        return cartones_15, cartones_30
+
+#2. Consultar.
+def consultar(cartones_15, cartones_30):
+    ganancia_15 = cartones_15 * precio_C15
+    ganancia_30 = cartones_30 * precio_C30
+    ganancia_total = ganancia_15 + ganancia_30
+    # Resultado.
+    print(f"Ventas registradas:")
+    print(f"Cantidad de cartones de 15 huevos vendidos: {cartones_15}")
+    print(f"Cantidad de cartones de 30 huevos vendidos: {cartones_30}")
+    print(f"Ganancia por cartones de 15 huevos: {ganancia_15} colones")
+    print(f"Ganancia por cartones de 30 huevos: {ganancia_30} colones")
+    print(f"TOTAL DE LAS GANANCIAS: {ganancia_total} colones")
+    
+#3. Modificar.
+def modificar(cartones_15, cartones_30):
+    try:
+        opcion = input("¿Qué desea modificar? 1: Cartones de 15 unidades, 2: Cartones de 30 unidades):")
+        if opcion == "1":
+            segd_cantidad = int(input("Ingrese la nueva cantidad de cartones de 15 huevos vendidos: "))
+            cartones_15 = segd_cantidad
+            print(f"Cantidad de cartones de 15 huevos actualizada a: {segd_cantidad}")
+        elif opcion == "2":
+            segd_cantidad = int(input("Ingrese la nueva cantidad de cartones de 30 huevos vendidos: "))
+            cartones_30 = segd_cantidad
+            print(f"Cantidad de cartones de 30 huevos actualizada a: {segd_cantidad}")
+        else:
+            print("Esta opción no es válida.")
+        return cartones_15, cartones_30
+    except ValueError:
+        print("Ingresa un número válido.")
+        return cartones_15, cartones_30  
+    
+#4. Borrar.
+def borrar():
+    print("Se borró el registro de las ventas.")
+    return 0, 0 
+def menu():
+    cartones_15 = 0
+    cartones_30 = 0
+    while True:
+        print("Elija una opción:")
+        print("1. Incluir")
+        print("2. Consultar")
+        print("3. Modificar")
+        print("4. Borrar")
+        print("5. Salir")
+        opcion = input("Ingrese el número de la opción: ")
+        if opcion == "1":
+            cartones_15, cartones_30 = incluir(cartones_15, cartones_30)
+        elif opcion == "2":
+            consultar(cartones_15, cartones_30)
+        elif opcion == "3":
+            cartones_15, cartones_30 = modificar(cartones_15, cartones_30)
+        elif opcion == "4":
+            cartones_15, cartones_30 = borrar()
+        elif opcion == "5":
+            print("Saliendo...")
+            break
+        else:
+            print("La opción no es válida, intente de nuevo.")
+menu()
